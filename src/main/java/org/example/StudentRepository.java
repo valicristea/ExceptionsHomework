@@ -11,15 +11,21 @@ public class StudentRepository {
     public void addStudent(
             String firstName,
             String lastName,
-            int dateOfBirth,
+            String dateOfBirth,
             String gender,
             String id
-    ) throws NameException, DateOfBirthException, GenderException, IdException {
+    ) throws NameException, DateOfBirthException, GenderException, IdException, AgeIsNotANumberException {
         if (firstName.isEmpty() || lastName.isEmpty()) {
             throw new NameException();
         }
+        int convertedDateOfBirth;
+        try {
+            convertedDateOfBirth = Integer.parseInt(dateOfBirth);
+        } catch (NumberFormatException e) {
+            throw new AgeIsNotANumberException();
+        }
         int currentYear = new GregorianCalendar().get(Calendar.YEAR);
-        if (dateOfBirth < 1900 || dateOfBirth > currentYear - 18) {
+        if (convertedDateOfBirth < 1900 || convertedDateOfBirth > currentYear - 18) {
             throw new DateOfBirthException();
         }
         if (!isGenderValid(gender)) {
@@ -28,7 +34,7 @@ public class StudentRepository {
         if (id.isEmpty()) {
             throw new IdException();
         }
-        studentList.add(new Student(firstName, lastName, dateOfBirth, gender, id));
+        studentList.add(new Student(firstName, lastName, convertedDateOfBirth, gender, id));
     }
 
     private boolean isGenderValid(String gender) {
@@ -77,8 +83,8 @@ public class StudentRepository {
         } else {
             studentList.sort(Comparator.comparing(student -> student.dateOfBirth));
         }
-        for (int i = 0; i < studentList.size(); i++) {
-            System.out.println(studentList.get(i));
+        for (Student student : studentList) {
+            System.out.println(student);
         }
 
     }
