@@ -18,11 +18,17 @@ import static org.junit.Assert.fail;
 public class AppTest {
     StudentRepository repository;
 
+    /**
+     * Sets up the repository before each test.
+     */
     @Before
     public void setup() {
         repository = new StudentRepository();
     }
 
+    /**
+     * This tests the add student method.
+     */
     @Test
     public void testAddStudent() {
         Assert.assertThrows(NameException.class, () -> {
@@ -53,6 +59,9 @@ public class AppTest {
         }
     }
 
+    /**
+     * This tests delete student method.
+     */
     @Test
     public void testDeleteStudent() {
         try {
@@ -73,6 +82,9 @@ public class AppTest {
         }
     }
 
+    /**
+     * This tests retrieve student list method.
+     */
     @Test
     public void testRetrieveStudentList() {
         try {
@@ -95,6 +107,9 @@ public class AppTest {
         }
     }
 
+    /**
+     * This tests list students method.
+     */
     @Test
     public void testListStudents() {
         Student student1 = new Student("Gheorghe", "Ion", 1990, "M", "1234");

@@ -8,6 +8,19 @@ public class StudentRepository {
     public StudentRepository() {
     }
 
+    /**
+     * This method add a Student to the repository.
+     * @param firstName
+     * @param lastName
+     * @param dateOfBirth
+     * @param gender
+     * @param id
+     * @throws NameException
+     * @throws DateOfBirthException
+     * @throws GenderException
+     * @throws IdException
+     * @throws AgeIsNotANumberException
+     */
     public void addStudent(
             String firstName,
             String lastName,
@@ -37,6 +50,11 @@ public class StudentRepository {
         studentList.add(new Student(firstName, lastName, convertedDateOfBirth, gender, id));
     }
 
+    /**
+     * This method verify the gender validity.
+     * @param gender
+     * @return
+     */
     private boolean isGenderValid(String gender) {
         String lowercaseGender = gender.toLowerCase();
         if (lowercaseGender.equals("m") || lowercaseGender.equals("f") || lowercaseGender.equals("male") || lowercaseGender.equals("female")) {
@@ -45,6 +63,12 @@ public class StudentRepository {
         return false;
     }
 
+    /**
+     * This method delete a student from repository.
+     * @param id
+     * @throws IdException
+     * @throws StudentDoesNotExistException
+     */
     public void deleteStudent(String id)
             throws IdException, StudentDoesNotExistException {
         if (id.isEmpty()) {
@@ -56,6 +80,13 @@ public class StudentRepository {
         }
     }
 
+    /**
+     * This method retrieve a list of students by age.
+     * @param age
+     * @return
+     * @throws AgeIsNotANumberException
+     * @throws AgeIsNegativeException
+     */
     public List<Student> retrieveStudentList(String age)
             throws AgeIsNotANumberException, AgeIsNegativeException {
         int convertedAge;
@@ -73,6 +104,11 @@ public class StudentRepository {
 
     }
 
+    /**
+     * This method list the students ordered by name.
+     * @param orderBy
+     * @throws OrderByException
+     */
     public void listStudents(String orderBy)
             throws OrderByException {
         if (orderBy.isEmpty()) {
