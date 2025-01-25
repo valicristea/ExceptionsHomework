@@ -38,11 +38,11 @@ public class App {
                         repository.addStudent(firstName, secondName, dateOfBirth, gender, id);
                     } catch (StudentException exception) {
                         switch (exception) {
-                            case NameException _ -> System.out.println("Name should not be empty.");
-                            case DateOfBirthException _ ->
+                            case NameException e -> System.out.println("Name should not be empty.");
+                            case DateOfBirthException e ->
                                     System.out.println("Date of birth should be between 1900 and current year -18.");
-                            case GenderException _ -> System.out.println("Gender is not valid.");
-                            case IdException _ -> System.out.println("ID should not be empty.");
+                            case GenderException e -> System.out.println("Gender is not valid.");
+                            case IdException e -> System.out.println("ID should not be empty.");
                             default -> System.out.println("Date of birth is not a number.");
                         }
                         continue;
